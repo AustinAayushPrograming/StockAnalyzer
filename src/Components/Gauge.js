@@ -1,16 +1,22 @@
 import axios from "axios";
-import  GaugeChart from 'react-gauge-chart';
-import React, { useState, useEffect, useCallback, useRef } from 'react';
-import Card from '@mui/material/Card';
-import CardContent from '@mui/material/CardContent';
-import Button from '@mui/material/Button';
-import Typography from '@mui/material/Typography';
-import OutlinedInput from '@mui/material/OutlinedInput';
-import InputLabel from '@mui/material/InputLabel';
-import InputAdornment from '@mui/material/InputAdornment';
-import FormControl from '@mui/material/FormControl';
-import TextField from '@mui/material/TextField';
-
+import GaugeChart from "react-gauge-chart";
+import React, { useState, useEffect, useCallback, useRef } from "react";
+import OutlinedInput from "@mui/material/OutlinedInput";
+import InputLabel from "@mui/material/InputLabel";
+import InputAdornment from "@mui/material/InputAdornment";
+import FormControl from "@mui/material/FormControl";
+import faker from "faker";
+import {
+    Chart as ChartJS,
+    CategoryScale,
+    LinearScale,
+    PointElement,
+    LineElement,
+    Title,
+    Tooltip,
+    Legend,
+} from "chart.js";
+import { Line } from "react-chartjs-2";
 
 const baseURL = "http://stock-analyzer-api-aap.herokuapp.com/data/";
 
@@ -25,43 +31,82 @@ function Gauge() {
         axios.get(reqURL).then((response) => {
             setTrendPoint(response.data);
         });
-    }, []);
+    }, [ticker]);
+
+    ChartJS.register(
+        CategoryScale,
+        LinearScale,
+        PointElement,
+        LineElement,
+        Title,
+        Tooltip,
+        Legend
+    );
+
+    const labels = [
+        "January",
+        "February",
+        "March",
+        "April",
+        "May",
+        "June",
+        "July",
+    ];
+
+    const data = {
+        labels,
+        datasets: [
+            {
+                label: "Price",
+                data: labels.map(() =>
+                    faker.datatype.number({ min: -1000, max: 1000 })
+                ),
+                borderColor: "rgb(255, 99, 132)",
+                backgroundColor: "rgba(255, 99, 132, 0.5)",
+            },
+        ],
+    };
+
+    const options = {
+        responsive: true,
+        plugins: {
+            legend: {
+                position: "top",
+            },
+        },
+    };
 
     return (
-        <div style={{ width: '700px', margin: "auto" }}>
-        <FormControl sx={{ m: 1 }}>
-          <InputLabel htmlFor="outlined-adornment-amount">Ticker</InputLabel>
-          <OutlinedInput
-            id="outlined-adornment-amount"
-            startAdornment={<InputAdornment position="start">$</InputAdornment>}
-            value = {ticker}
-            onChange={(e) => setTicker(e.target.value)}
-            label="Ticker"
-          />
-        </FormControl>
-            <Card sx={{ maxWidth: 500 }}>
-            <GaugeChart id="gauge-chart3" 
-                nrOfLevels={4} 
-                colors={["#FF5F6D", "#FFC371", "#7FF782", "#00FF06"]} 
-                arcWidth={0.25} 
-                percent={0.9}
-                needleColor = {"#000000"}
+        <div className="flex-col m-auto w-[500px] flex justify-center items-center h-screen">
+            <p className="font-bold text-5xl drop-shadow-md">Stock Analyzer</p>
+            <FormControl sx={{ width: 1, marginY: 5 }}>
+                <InputLabel htmlFor="outlined-adornment-amount">
+                    Ticker
+                </InputLabel>
+                <OutlinedInput
+                    id="outlined-adornment-amount"
+                    startAdornment={
+                        <InputAdornment position="start">$</InputAdornment>
+                    }
+                    value={ticker}
+                    onChange={(e) => setTicker(e.target.value)}
+                    label="Ticker"
+                />
+            </FormControl>
+            <Line className="mb-7" data={data} options={options} />
+            <GaugeChart
+                className=""
+                id="gauge-chart3"
+                nrOfLevels={4}
+                colors={["#FF5F6D", "#FFC371", "#7FF782", "#00FF06"]}
+                arcWidth={0.25}
+                percent={0.5}
+                needleColor={"#000000"}
                 hideText
             />
-                <CardContent>
-                    <Typography gutterBottom variant="h5" component="div">
-                    Trend Points
-                    </Typography>
-                    <Typography variant="body2" color="text.secondary">
-                    Trend points are calculated by testing the stock's underlying metrics against some basic financial standards such as EMA, SMA, ROC, and more.
-                    </Typography>
-                </CardContent>
-            </Card>
-            {trendPoint ? (
-                <p>{trendPoint["data"]}</p>
-            ):(null)}
+            {trendPoint ? <p>{trendPoint["data"]}</p> : null}
         </div>
-    )
+    );
 }
 
-export default Gauge
+export default Gauge;
