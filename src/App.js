@@ -1,4 +1,5 @@
 import Gauge from "./Components/Gauge";
+import "bootstrap/dist/css/bootstrap.min.css";
 
 function App() {
   return (
