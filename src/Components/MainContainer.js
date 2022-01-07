@@ -13,9 +13,6 @@ function MainContainer({ labels, values }) {
                                 type: "candlestick",
                                 height: 650,
                             },
-                            title: {
-                                align: "left",
-                            },
                             xaxis: {
                                 type: "datetime",
                             },

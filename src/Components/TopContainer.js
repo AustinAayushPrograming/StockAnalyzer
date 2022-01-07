@@ -1,11 +1,10 @@
 import {
-    Button,
-    CircularProgress,
     FilledInput,
     FormControl,
     InputAdornment,
     InputLabel,
 } from "@mui/material";
+import LoadingButton from "@mui/lab/LoadingButton";
 import React from "react";
 import { Col, Row } from "react-bootstrap";
 
@@ -13,7 +12,7 @@ function TopContainer({ ticker, handleSubmit, loading }) {
     return (
         <Row className="divContainer">
             <Col md={6}>
-                <span>Stock Analyzer</span>
+                <span className="title-font">Stock Analyzer</span>
             </Col>
             <Col md={6}>
                 <div className="inputSide">
@@ -29,34 +28,27 @@ function TopContainer({ ticker, handleSubmit, loading }) {
                                 width: "200px",
                                 borderTopRightRadius: "0px",
                                 borderBottomRightRadius: "0px",
+                                borderTopLeftRadius: "5px",
+                                borderBottomLeftRadius: "5px",
                                 outline: "none",
                             }}
+                            disableUnderline
                             inputRef={ticker}
                             id="outlined-adornment-amount"
-                            startAdornment={
-                                <InputAdornment position="start">
-                                    $
-                                </InputAdornment>
-                            }
                             onChange={(e) => {
                                 ticker.current.value = e.target.value;
                             }}
                         />
-                        <Button
-                            sx={{
-                                width: "100px",
-                                height: "60px",
-                                borderTopLeftRadius: "0px",
-                                borderBottomLeftRadius: "0px",
-                            }}
-                            variant="outlined"
+                        <LoadingButton
+                            disableElevation
+                            variant="text"
                             onClick={handleSubmit}
+                            loading={loading}
                         >
                             Submit
-                        </Button>
+                        </LoadingButton>
                     </FormControl>
                 </div>
-                {loading ? <CircularProgress /> : null}
             </Col>
         </Row>
     );
