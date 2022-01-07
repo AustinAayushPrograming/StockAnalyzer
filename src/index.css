@@ -1,104 +1,103 @@
 .bodyContainer {
-  padding: 50px;
-  height: 100%;
+    padding: 50px;
+    height: 100%;
 }
 
 .cardContainer {
-  width: 100%;
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.5);
-  transition: 0.3s;
-  border-radius: 20px;
-  position: relative;
+    width: 100%;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.5);
+    transition: 0.3s;
+    border-radius: 20px;
+    position: relative;
 }
 
 /* On mouse-over, add a deeper shadow */
 .cardContainer:hover {
-  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
 }
 
 .divContainer {
-  border-radius: 20px 20px 0px 0px;
-  height: 120px;
-  width: 100%;
-  margin: 0px !important;
-  background-color: #969696;
+    border-radius: 20px 20px 0px 0px;
+    height: 120px;
+    width: 100%;
+    margin: 0px !important;
+    background-color: #969696;
 }
 
 .divContainer:first-child {
-  font-family: "Red Hat Display";
-  font-style: normal;
-  font-weight: normal;
-  font-size: 48px;
-  line-height: 64px;
-  color: white;
+    font-family: "Red Hat Display";
+    font-style: normal;
+    font-weight: normal;
+    font-size: 48px;
+    line-height: 64px;
+    color: white;
 }
 
 .inputSide {
-  background-color: white;
-  height: 60px;
-  width: fit-content;
-  border-top-right-radius: 5px;
-  border-bottom-right-radius: 5px;
+    background-color: white;
+    height: 60px;
+    width: fit-content;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
 }
 
 .divContainer .col-md-6 {
-  display: flex;
-  justify-content: center;
-  align-items: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .contentContainer {
-  margin: 0px !important;
-  height: calc(100% - 320px);
+    margin: 0px !important;
+    height: calc(100% - 320px);
 }
 
 .contentContainer .col-xl-4 {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
 }
 
 .contentContainer .col-xl-8 {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
 }
 
 .chartContainer {
-  min-width: 300px;
-  width: 100%;
-  padding: 20px;
+    min-width: 300px;
+    width: 100%;
+    padding: 20px;
 }
 
 .indexContainer {
-  min-height: 350px;
-  margin: 0px !important;
+    margin: 0px !important;
 }
 
 .indexContainer .col-xl-4 {
-  position: relative;
-  padding: 30px;
+    position: relative;
+    padding: 30px;
 }
 
 .indexContainer .col-xl-4 div:first-of-type {
-  height: 100%;
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.5);
-  padding: 40px;
-  border-radius: 25px;
-  min-height: 300px;
+    height: 200px;
+    box-shadow: 2px 2px 2px 2px rgba(0, 0, 0, 0.2);
+    padding: 20px;
+    padding-bottom: 75px;
+    border-radius: 10px;
 }
 
 .table {
-  height: calc(100% - 60px) !important;
+    height: calc(100% - 60px) !important;
 }
 
 @media only screen and (max-width: 767.9px) {
-  .divContainer {
-    height: 200px;
-  }
-  .inputSide {
-    margin-top: 20px;
-  }
+    .divContainer {
+        height: 200px;
+    }
+    .inputSide {
+        margin-top: 20px;
+    }
 }
